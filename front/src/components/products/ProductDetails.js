@@ -14,8 +14,7 @@ export const ProductDetails = () => {
    const alert= useAlert();
    const [quantity, setQuantity] = useState(1)
 
-   
-   useEffect(() => {
+    useEffect(() => {
     dispatch(getProductDetails(id))
     if (error){
       alert.error(error);

@@ -1,36 +1,40 @@
-import { ALL_PRODUCTS_REQUEST,
+import { 
+    ALL_PRODUCTS_REQUEST,
     ALL_PRODUCTS_SUCCESS, 
     ALL_PRODUCTS_FAIL,
     PRODUCT_DETAILS_REQUEST,
     PRODUCT_DETAILS_SUCCESS,
     PRODUCT_DETAILS_FAIL,
-    CLEAR_ERRORS} from "../constants/productConstants";
+    CLEAR_ERRORS
+} from "../constants/productConstants";
 
-export const productsReducer = (state ={ products: []}, action)=>{
-    switch(action.type){
+export const productsReducer = (state = { products: [] }, action) => {
+    switch (action.type) {
         case ALL_PRODUCTS_REQUEST:
-            return{
-                loading:true,
-                productos:[]
+            return {
+                loading: true,
+                productos: []
             }
 
         case ALL_PRODUCTS_SUCCESS:
-            return{
-                loading:false,
-                productos: action.payload.productos,
-                cantidad: action.payload.cantidad
+            return {
+                loading: false,
+                products: action.payload.products,
+                productsCount: action.payload.productsCount,
+                resPerPage: action.payload.resPerPage,
+                filteredProductsCount: action.payload.filteredProductsCount
             }
 
         case ALL_PRODUCTS_FAIL:
-            return{
-                loading:false,
+            return {
+                loading: false,
                 error: action.payload
             }
 
         case CLEAR_ERRORS:
-            return{
+            return {
                 ...state,
-                error:null
+                error: null
             }
 
 
@@ -66,8 +70,8 @@ export const productDetailsReducer = (state = { product: {} }, action) => {
                 ...state,
                 error: null
             }
+
         default:
             return state
-
     }
 }
